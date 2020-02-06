@@ -15,7 +15,7 @@ class GlobalSession implements SessionInterface
     use FlashTrait;
 
     /** @var array<string,mixed> */
-    protected array $options;
+    protected $options;
 
     /**
      * Session constructor.

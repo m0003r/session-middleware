@@ -9,9 +9,12 @@ namespace Jasny\Session\Flash;
  */
 class Flash
 {
-    public string $type;
-    public string $message;
-    public string $contentType;
+    /** @var string  */
+    public $type;
+    /** @var string  */
+    public $message;
+    /** @var string  */
+    public $contentType;
 
     /**
      * Flash constructor.

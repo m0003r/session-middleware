@@ -12,11 +12,13 @@ namespace Jasny\Session\Flash;
 class FlashBag implements \IteratorAggregate
 {
     /** @var \ArrayAccess<string,mixed> */
-    protected \ArrayAccess $session;
-    protected string $key;
+    protected $session;
+
+    /** @var string */
+    protected $key;
 
     /** @var Flash[] */
-    protected array $entries = [];
+    protected $entries = [];
 
     /**
      * Class constructor.
@@ -113,7 +115,7 @@ class FlashBag implements \IteratorAggregate
         if ($invalid > 0) {
             trigger_error(
                 $invalid === 1 ? "Ignored invalid flash message" : "Ignoring $invalid invalid flash messages",
-                E_USER_NOTICE,
+                E_USER_NOTICE
             );
         }
     }
@@ -141,8 +143,10 @@ class FlashBag implements \IteratorAggregate
     public function reissue(): self
     {
         $this->session[$this->key] = array_merge(
-            array_map(fn(Flash $flash) => $flash->toAssoc(), $this->entries),
-            $this->session[$this->key] ?? [],
+            array_map(function (Flash $flash): array {
+                return $flash->toAssoc();
+            }, $this->entries),
+            $this->session[$this->key] ?? []
         );
 
         $this->entries = [];

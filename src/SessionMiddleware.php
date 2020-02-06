@@ -15,7 +15,8 @@ use Psr\Http\Message\ResponseInterface as Response;
  */
 class SessionMiddleware implements MiddlewareInterface
 {
-    protected SessionInterface $defaultSession;
+    /** @var SessionInterface|null  */
+    protected $defaultSession;
 
     /**
      * Class constructor.
@@ -45,7 +46,9 @@ class SessionMiddleware implements MiddlewareInterface
     public function asDoublePass(): callable
     {
         return function (ServerRequest $request, Response $response, callable $next): Response {
-            return $this->run($request, fn($request) => $next($request, $response));
+            return $this->run($request, function ($request) use ($next, $response) {
+                return $next($request, $response);
+            });
         };
     }
 

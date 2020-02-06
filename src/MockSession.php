@@ -17,8 +17,9 @@ class MockSession extends \ArrayObject implements SessionInterface
     use FlashTrait;
 
     /** @var array<string,mixed> */
-    protected array $initialData;
-    protected int $status = \PHP_SESSION_ACTIVE;
+    protected $initialData;
+    /** @var int */
+    protected $status = \PHP_SESSION_ACTIVE;
 
     /**
      * MockSession constructor.

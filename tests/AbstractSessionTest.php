@@ -7,7 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 abstract class AbstractSessionTest extends TestCase
 {
-    protected SessionInterface $session;
+    /** @var SessionInterface  */
+    protected $session;
 
     abstract protected function assertSessionData(array $expected);
 

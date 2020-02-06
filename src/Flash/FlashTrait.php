@@ -11,7 +11,8 @@ use Jasny\Session\SessionInterface;
  */
 trait FlashTrait
 {
-    protected FlashBag $flashBag;
+    /** @var FlashBag */
+    protected $flashBag;
 
     /**
      * Add a flash message.

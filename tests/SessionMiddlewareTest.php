@@ -23,7 +23,8 @@ class SessionMiddlewareTest extends TestCase
     /** @var SessionInterface&MockObject  */
     protected $session;
 
-    protected SessionMiddleware $middleware;
+    /** @var SessionMiddleware */
+    protected $middleware;
 
     public function setUp(): void
     {
@@ -125,7 +126,7 @@ class SessionMiddlewareTest extends TestCase
         $next = $this->createCallbackMock(
             $this->once(),
             [$this->identicalTo($requestWithSession), $this->identicalTo($baseResponse)],
-            $response,
+            $response
         );
 
         $doublePass = $this->middleware->asDoublePass();
@@ -154,7 +155,7 @@ class SessionMiddlewareTest extends TestCase
         $next = $this->createCallbackMock(
             $this->once(),
             [$this->identicalTo($request), $this->identicalTo($baseResponse)],
-            $response,
+            $response
         );
 
         $doublePass = $this->middleware->asDoublePass();
